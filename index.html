@@ -19,7 +19,7 @@
         <div class="profile__info">
           <div class="profile__info-block">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button type="button" class="profile__edit-button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
@@ -85,15 +85,15 @@
     <footer class="footer">
       <p class="footer__copyright">&copy;2021 Жданов Глеб</p>
     </footer>
-    <section class="popup popup_opened">
+    <section class="popup">
       <div class="popup__container">
-        <form class="popup__form">
-          <h2 class="popum__form-title">Редактировать профиль</h2>
-          <input type="text" class="popup__item" placeholder="Жак-Ив Кусто">
-          <input type="text" class="popup__item" placeholder="Исследователь океана">
+        <form class="popup__form" name="form">
+          <h2 class="popum__title">Редактировать профиль</h2>
+          <input type="text" class="popup__item" name="text">
+          <input type="text" class="popup__item" name="text">
           <button type="submit" class="popup__buttom">Cохранить</button>
         </form>
-        <button class="popup__buttom-close"></button>
+        <button type="button" class="popup__buttom-close"></button>
       </div>
     </section>
   </div>
