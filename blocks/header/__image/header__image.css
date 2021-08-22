@@ -4,3 +4,9 @@
     height: 24.4px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .header__image {
+    padding-left: 27px;
+  }
+}

@@ -27,9 +27,10 @@ form.addEventListener (
     event.preventDefault();
     title.textContent = popupItem.value;
     profileSubtitle.textContent =  popupItemSubtitle.value;
-    button.addEventListener('click', chekPopup);
 }
 );
+
+button.addEventListener('click', chekPopup);
 
 
 
