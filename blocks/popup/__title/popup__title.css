@@ -1,4 +1,4 @@
-.popum__title {
+.popup__title {
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 560px) {
-  .popum__title{
+  .popup__title{
     font-size: 18px;
     line-height: 22px;
     margin:27px 0 0 22px;
