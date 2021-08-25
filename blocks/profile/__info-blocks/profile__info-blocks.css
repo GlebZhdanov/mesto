@@ -1,5 +1,4 @@
 .profile__info-blocks {
   display: flex;
   flex-direction: row;
-  max-width: 336px;
 }

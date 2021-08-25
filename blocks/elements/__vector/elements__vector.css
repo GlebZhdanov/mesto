@@ -4,6 +4,8 @@
   background-image: url("../../../images/Vector3.svg");
   background-position: center;
   background-repeat: no-repeat;
+  border: 0;
+  background-color: white;
 }
 
 .elements__vector:hover {
@@ -11,10 +13,6 @@
 }
 
 .elements__vector:active {
-  width: 22px;
-  height: 19px;
-  background-image: url("../../../images/Union.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 1;
+  background-image: url("../../../images/Union.svg"); 
+  opacity: 1; 
 }

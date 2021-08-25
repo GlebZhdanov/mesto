@@ -13,7 +13,8 @@
 
 @media screen and (max-width: 380px) {
   .profile__button {
-    margin-top: 28px;
+    background-image: url("../../../images/Vector320.svg");
+    margin-top: 34px;
     width: 100%;
   }
 }
