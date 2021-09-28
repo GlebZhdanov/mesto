@@ -25,54 +25,12 @@
         <button type="button" class="profile__button"></button>
       </section>
       <section class="elements">
-          <div class="elements__group">
-            <img src="images/karachaevsk.jpg" class="elements__image" alt="Карачаево-Черкессия">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Карачаево-Черкессия</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
-          <div class="elements__group">
-            <img src="images/El'brus.jpg" class="elements__image" alt="Гора Эльбрус">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
-          <div class="elements__group">
-            <img src="images/Dombaj.jpg" class="elements__image" alt="Домбай">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Домбай</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
-          <div class="elements__group">
-            <img src="images/El'brus.jpg" class="elements__image" alt="Гора Эльбрус">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
-          <div class="elements__group">
-            <img src="images/Dombaj.jpg" class="elements__image" alt="Домбай">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Домбай</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
-          <div class="elements__group">
-            <img src="images/karachaevsk.jpg" class="elements__image" alt="Карачаево-Черкессия">
-            <div class="elements__group-text">
-              <h2 class="elements__title">Карачаево-Черкессия</h2>
-              <button type="button" class="elements__vector"></button>
-            </div>
-          </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy;2021 Жданов Глеб</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <form class="popup__form" name="form">
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -83,7 +41,36 @@
         <button type="button" class="popup__buttom-close"></button>
       </div>
     </div>
+    <div class="popup popup_add-card">
+      <div class="popup__container">
+        <form class="popup__form" name="form">
+          <h2 class="popup__title">Новое место</h2>
+          <input type="text" class="popup__item popup__item_title_card" name="text" placeholder="Название">
+          <input type="text" class="popup__item popup__item_url_card" name="text" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__buttom">Cоздать</button>
+        </form>
+        <button type="button" class="popup__buttom-close"></button>
+      </div>
+    </div>
+    <div class="popup popup_image-card">
+      <div class="popup__content">
+        <img class="popup__image" src="" alt="">
+        <h3 class="popup__place"></h3>
+        <button type="button" class="popup__buttom-close"></button>
+      </div>
+    </div>
   </div>
+  <template class="template-card">
+    <div class="elements__group">
+      <img src="" class="elements__image" alt="">
+      <button type="button" class="elements__button-delete"></button>
+      <div class="elements__group-text">
+        <h2 class="elements__title"></h2>
+        <button type="button" class="elements__vector"></button>
+      </div>
+    </div>
+  </template>
+  <script src="script/cards.js"></script>
   <script src="script/script.js"></script>
 </body>
 </html>
