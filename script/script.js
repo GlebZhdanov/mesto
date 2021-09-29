@@ -31,30 +31,30 @@ const popupItemUrlAdd = popupCard.querySelector('.popup__item_url_card');
 
 
 //Реализация редактирования профиля
-chekPopup = (popup) => {
+togglePopup = (popup) => {
     popup.classList.toggle('popup_opened');
 }
 
 openPopupButton.addEventListener('click', () => {
-  chekPopup(popupEdit)
+  togglePopup(popupEdit)
   popupItem.value = title.textContent;
   popupItemSubtitle.value = profileSubtitle.textContent;
 });
 
 closePopupEdit.addEventListener('click', () => {
-  chekPopup(popupEdit)
+  togglePopup(popupEdit)
 });
 
 openPopupCardButton.addEventListener('click', () => {
-  chekPopup(popupCard)
+  togglePopup(popupCard)
 });
 
 closePopupCard.addEventListener('click', () => {
-  chekPopup(popupCard)
+  togglePopup(popupCard)
 });
 
 closePopupImage.addEventListener('click', () => {
-  chekPopup(popupImage)
+  togglePopup(popupImage)
 });
 
 
@@ -64,7 +64,7 @@ formEdit.addEventListener ('submit',
     event.preventDefault();
     title.textContent = popupItem.value;
     profileSubtitle.textContent =  popupItemSubtitle.value;
-    chekPopup (popupEdit);
+    togglePopup (popupEdit);
 }
 );
 
@@ -72,7 +72,7 @@ formCard.addEventListener ('submit',
   function(event) {
     event.preventDefault();
     renderCard({name: popupItemAdd.value, link: popupItemUrlAdd.value});
-    chekPopup (popupCard);
+    togglePopup (popupCard);
     popupItemAdd.value = "";
     popupItemUrlAdd.value = "";
 }
@@ -106,7 +106,7 @@ function cardDelete (event) {
   cardDeleteButton.addEventListener('click', cardDelete)
 
   cardImage.addEventListener('click', () => {
-    chekPopup(popupImage)
+    togglePopup(popupImage)
     popupImagePlace.textContent = cardTitle.textContent;
     popupImageOpen.src = cardImage.src;
   });
