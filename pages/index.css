@@ -39,3 +39,5 @@
 @import url('../blocks/popup/__content/popup__content.css');
 @import url('../blocks/popup/__place/popup__place.css');
 @import url('../blocks/popup/__image/popup__image.css');
+@import url('../blocks/popup/__input_type_error/popup__input_type_error.css');
+@import url('../blocks/popup/__error_visible/popup__error_visible.css');
