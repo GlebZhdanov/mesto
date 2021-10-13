@@ -120,3 +120,27 @@ function cardDelete (event) {
 initialCards.forEach((data) => {
   renderCard(data)
 })
+
+const removePopup = () => {
+  popupEdit.classList.remove('popup_opened');
+  popupCard.classList.remove('popup_opened');
+  popupImage.classList.remove('popup_opened');
+}
+
+const closePopupEscape = () => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      removePopup()
+  }
+  })
+}
+
+const closePopupClick = () => {
+  document.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      removePopup()
+  }
+  })
+}
+closePopupEscape()
+closePopupClick()

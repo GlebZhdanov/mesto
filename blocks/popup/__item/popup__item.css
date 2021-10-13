@@ -1,26 +1,25 @@
 .popup__item {
-  border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
-  outline: none;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  color: #000000;
-  width: 358px;
   padding: 0;
-  padding-bottom: 9px;
-  margin: 50px 0 0 36px;
+  margin-bottom: 5px;
+  max-width: 358px;
+  min-height: 27px;
+  border: 0;
+  border-bottom: 1px solid #000000;
+  border-color: rgba(0, 0, 0, 0.2)
 }
 
 .popup__item:last-of-type {
-  margin-top: 30px;
 }
 
 @media screen and (max-width: 560px) {
   .popup__item  {
     width: 238px;
-    margin: 74px 0 0 22px;
   }
 }
+
+
+
 

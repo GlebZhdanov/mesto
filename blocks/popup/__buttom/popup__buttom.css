@@ -1,20 +1,18 @@
 .popup__buttom {
   padding: 0;
-  margin: auto;
   width: 358px;
   height: 50px;
   background: #000000;
   border-radius: 2px;
-  border: 0;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   color: #FFFFFF;
-  margin-top: 47px;
   cursor: pointer;
-  margin-bottom: 37px;
+  border: none;
+  margin-top: 18px;
 }
 
 .popup__buttom:hover {
@@ -27,6 +25,5 @@
     line-height: 17px;
     width: 238px;
     height: 46px;
-    margin-bottom: 25px;
   }
 }
