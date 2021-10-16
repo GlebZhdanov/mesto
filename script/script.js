@@ -28,33 +28,40 @@ const popupItemSubtitle = document.querySelector('.popup__item_subtitle_active')
 
 const popupItemAdd = popupCard.querySelector('.popup__item_title_card');
 const popupItemUrlAdd = popupCard.querySelector('.popup__item_url_card');
+const popupButton = popupCard.querySelector('.popup__buttom_card');
 
+// Закрытие и открытие попапа
 
-//Реализация редактирования профиля
-togglePopup = (popup) => {
-    popup.classList.toggle('popup_opened');
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
+}
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 openPopupButton.addEventListener('click', () => {
-  togglePopup(popupEdit)
+  openPopup(popupEdit)
   popupItem.value = title.textContent;
   popupItemSubtitle.value = profileSubtitle.textContent;
 });
 
 closePopupEdit.addEventListener('click', () => {
-  togglePopup(popupEdit)
+  closePopup(popupEdit)
 });
 
 openPopupCardButton.addEventListener('click', () => {
-  togglePopup(popupCard)
+  openPopup(popupCard)
 });
 
 closePopupCard.addEventListener('click', () => {
-  togglePopup(popupCard)
+  closePopup(popupCard)
 });
 
 closePopupImage.addEventListener('click', () => {
-  togglePopup(popupImage)
+  closePopup(popupImage)
 });
 
 
@@ -64,17 +71,23 @@ formEdit.addEventListener ('submit',
     event.preventDefault();
     title.textContent = popupItem.value;
     profileSubtitle.textContent =  popupItemSubtitle.value;
-    togglePopup (popupEdit);
+    closePopup(popupEdit);
 }
 );
 
+const disabledButton = () => {
+popupButton.classList.add('popup__button_disabled')
+popupButton.disabled = true;
+}
+
 formCard.addEventListener ('submit',
-  function(event) {
+  function(event,) {
     event.preventDefault();
     renderCard({name: popupItemAdd.value, link: popupItemUrlAdd.value});
-    togglePopup (popupCard);
+    closePopup(popupCard);
     popupItemAdd.value = "";
     popupItemUrlAdd.value = "";
+    disabledButton()
 }
 );
 
@@ -106,7 +119,7 @@ function cardDelete (event) {
   cardDeleteButton.addEventListener('click', cardDelete)
 
   cardImage.addEventListener('click', () => {
-    togglePopup(popupImage)
+    openPopup(popupImage)
     popupImagePlace.textContent = cardTitle.textContent;
     popupImageOpen.src = cardImage.src;
   });
@@ -121,26 +134,26 @@ initialCards.forEach((data) => {
   renderCard(data)
 })
 
-const removePopup = () => {
-  popupEdit.classList.remove('popup_opened');
-  popupCard.classList.remove('popup_opened');
-  popupImage.classList.remove('popup_opened');
-}
-
-const closePopupEscape = () => {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      removePopup()
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
-  })
 }
 
 const closePopupClick = () => {
   document.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
-      removePopup()
+      closePopup(evt.target)
   }
   })
 }
-closePopupEscape()
 closePopupClick()
+
+const chekInput = () => {
+  if (popupItemAdd.value === "") {
+    disabledButton()
+  }
+}
+
+chekInput()
