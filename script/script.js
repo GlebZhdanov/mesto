@@ -1,9 +1,9 @@
-//Переменные на popup профиля
+import { initialCards } from './cards.js';
+import { Card } from './Card.js';
+import { closePopup, openPopup, closeByEscape } from './utils.js';
 
 const title = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-
-// Переменные на действие попапов
 
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupCard = document.querySelector('.popup_add-card');
@@ -19,10 +19,6 @@ const closePopupImage = popupImage.querySelector('.popup__buttom-close');
 const formEdit = popupEdit.querySelector('.popup__form');
 const formCard = popupCard.querySelector('.popup__form');
 
-const popupImagePlace = popupImage.querySelector('.popup__place')
-const popupImageOpen = popupImage.querySelector('.popup__image')
-
-// Инпуты двух форм
 const popupItem = document.querySelector('.popup__item_title_active');
 const popupItemSubtitle = document.querySelector('.popup__item_subtitle_active');
 
@@ -30,17 +26,8 @@ const popupItemAdd = popupCard.querySelector('.popup__item_title_card');
 const popupItemUrlAdd = popupCard.querySelector('.popup__item_url_card');
 const popupButton = popupCard.querySelector('.popup__buttom_card');
 
-// Закрытие и открытие попапа
+const listCard = document.querySelector('.elements')
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-}
-
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
 
 openPopupButton.addEventListener('click', () => {
   openPopup(popupEdit)
@@ -64,8 +51,10 @@ closePopupImage.addEventListener('click', () => {
   closePopup(popupImage)
 });
 
+const pasteCard = (data) => {
+  listCard.prepend(data);
+}
 
-//Реализация sumbit
 formEdit.addEventListener ('submit',
   function(event) {
     event.preventDefault();
@@ -83,7 +72,8 @@ popupButton.disabled = true;
 formCard.addEventListener ('submit',
   function(event,) {
     event.preventDefault();
-    renderCard({name: popupItemAdd.value, link: popupItemUrlAdd.value});
+    const card = new Card({name: popupItemAdd.value, link: popupItemUrlAdd.value}, '.template-card');
+    pasteCard(card.generateCard())
     closePopup(popupCard);
     popupItemAdd.value = "";
     popupItemUrlAdd.value = "";
@@ -91,55 +81,11 @@ formCard.addEventListener ('submit',
 }
 );
 
-//Добавление карточки
-const cardTemplate = document.querySelector('.template-card').content;
-const listCard = document.querySelector('.elements')
-
-function renderCard(data) {
-// Вставить карточку в DOM
-  listCard.prepend(createCard(data));
-}
-
-function createCard(data) {
-  const cardElement = cardTemplate.querySelector('.elements__group').cloneNode(true);
-  const cardImage = cardElement.querySelector('.elements__image')
-  const cardTitle = cardElement.querySelector('.elements__title')
-  const cardLikeButton = cardElement.querySelector('.elements__vector')
-  const cardDeleteButton = cardElement.querySelector('.elements__button-delete')
-
-// Функции лайка, удаление и открытия карточки
-function cardlike () {
-  cardLikeButton.classList.toggle('elements__vector-active')
-}
-  cardLikeButton.addEventListener('click', cardlike);
-
-function cardDelete (event) {
-  event.target.closest('.elements__group').remove();
-}
-  cardDeleteButton.addEventListener('click', cardDelete)
-
-  cardImage.addEventListener('click', () => {
-    openPopup(popupImage)
-    popupImagePlace.textContent = cardTitle.textContent;
-    popupImageOpen.src = cardImage.src;
-  });
-
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  return cardElement;
-}
-
 initialCards.forEach((data) => {
-  renderCard(data)
+  const card = new Card (data, '.template-card');
+  const CardElement = card.generateCard();
+  pasteCard(CardElement);
 })
-
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
 
 const closePopupClick = () => {
   document.addEventListener('click', (evt) => {
@@ -148,6 +94,7 @@ const closePopupClick = () => {
   }
   })
 }
+
 closePopupClick()
 
 const chekInput = () => {
