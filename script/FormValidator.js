@@ -1,3 +1,7 @@
+const popupCard = document.querySelector('.popup_add-card');
+const cardNameInput = popupCard.querySelector('.popup__item_title_card');
+const popupButton = popupCard.querySelector('.popup__buttom_card');
+
 export class FormValidator {
   constructor(config, formElement) {
     this._formElement= formElement;
@@ -48,9 +52,17 @@ export class FormValidator {
     })
   }
 
+  disabledButton() {
+    popupButton.classList.add('popup__button_disabled')
+    popupButton.disabled = true;
+  }
+
   enableValidation() {
     const forms = this._formElement;
     this._setEventListener(forms, this._config)
+    if (cardNameInput.value === "") {
+      this.disabledButton()
+    }
   }
 }
 

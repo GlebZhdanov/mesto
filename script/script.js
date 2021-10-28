@@ -1,6 +1,7 @@
 import { initialCards } from './cards.js';
 import { Card } from './Card.js';
 import { closePopup, openPopup, closeByEscape } from './utils.js';
+import { FormValidator } from './FormValidator.js';
 
 const title = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -8,6 +9,11 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupCard = document.querySelector('.popup_add-card');
 const popupImage = document.querySelector('.popup_image-card');
+
+const popupEditForm = popupEdit.querySelector('.popup__form');
+const popupCardForm = popupCard.querySelector('.popup__form');
+
+const popupCardSumbitButton = popupCard.querySelector('.popup__buttom');
 
 const openPopupButton = document.querySelector('.profile__edit-button');
 const openPopupCardButton = document.querySelector('.profile__button');
@@ -22,12 +28,21 @@ const formCard = popupCard.querySelector('.popup__form');
 const popupItem = document.querySelector('.popup__item_title_active');
 const popupItemSubtitle = document.querySelector('.popup__item_subtitle_active');
 
-const popupItemAdd = popupCard.querySelector('.popup__item_title_card');
-const popupItemUrlAdd = popupCard.querySelector('.popup__item_url_card');
-const popupButton = popupCard.querySelector('.popup__buttom_card');
+const cardNameInput = popupCard.querySelector('.popup__item_title_card');
+const cardLinkInput = popupCard.querySelector('.popup__item_url_card');
 
-const listCard = document.querySelector('.elements')
+const listCard = document.querySelector('.elements');
 
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__buttom',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+};
+
+const popupEditEnableValidation = new FormValidator(validationConfig, popupEditForm)
+const popupCardEnableValidation = new FormValidator(validationConfig, popupCardForm)
 
 openPopupButton.addEventListener('click', () => {
   openPopup(popupEdit)
@@ -64,30 +79,30 @@ formEdit.addEventListener ('submit',
 }
 );
 
-const disabledButton = () => {
-popupButton.classList.add('popup__button_disabled')
-popupButton.disabled = true;
+const createCard = (data, cardSelector) => {
+  const card = new Card(data, cardSelector).generateCard();
+  return card;
 }
 
 formCard.addEventListener ('submit',
   function(event,) {
     event.preventDefault();
-    const card = new Card({name: popupItemAdd.value, link: popupItemUrlAdd.value}, '.template-card');
-    pasteCard(card.generateCard())
+    const card = createCard({name: cardNameInput.value, link: cardLinkInput.value}, '.template-card');
+    pasteCard(card)
     closePopup(popupCard);
-    popupItemAdd.value = "";
-    popupItemUrlAdd.value = "";
-    disabledButton()
+    cardNameInput.value = "";
+    cardLinkInput.value = "";
+    popupCardSumbitButton.classList.add('popup__button_disabled')
+    popupCardSumbitButton.disabled = true;
 }
 );
 
 initialCards.forEach((data) => {
-  const card = new Card (data, '.template-card');
-  const CardElement = card.generateCard();
-  pasteCard(CardElement);
+  const card = createCard(data, '.template-card');
+  pasteCard(card);
 })
 
-const closePopupClick = () => {
+const closeByOverlayClick = () => {
   document.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
       closePopup(evt.target)
@@ -95,12 +110,11 @@ const closePopupClick = () => {
   })
 }
 
-closePopupClick()
+closeByOverlayClick()
 
-const chekInput = () => {
-  if (popupItemAdd.value === "") {
-    disabledButton()
-  }
+const enableValidation = () => {
+  popupEditEnableValidation.enableValidation();
+  popupCardEnableValidation.enableValidation();
 }
 
-chekInput()
+enableValidation(validationConfig)
