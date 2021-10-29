@@ -13,8 +13,6 @@ const popupImage = document.querySelector('.popup_image-card');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupCardForm = popupCard.querySelector('.popup__form');
 
-const popupCardSumbitButton = popupCard.querySelector('.popup__buttom');
-
 const openPopupButton = document.querySelector('.profile__edit-button');
 const openPopupCardButton = document.querySelector('.profile__button');
 
@@ -41,8 +39,8 @@ const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
 };
 
-const popupEditEnableValidation = new FormValidator(validationConfig, popupEditForm)
-const popupCardEnableValidation = new FormValidator(validationConfig, popupCardForm)
+const validatorEditProfile = new FormValidator(validationConfig, popupEditForm)
+const validatorAddCard = new FormValidator(validationConfig, popupCardForm)
 
 openPopupButton.addEventListener('click', () => {
   openPopup(popupEdit)
@@ -56,6 +54,7 @@ closePopupEdit.addEventListener('click', () => {
 
 openPopupCardButton.addEventListener('click', () => {
   openPopup(popupCard)
+  validatorAddCard.disabledButton();
 });
 
 closePopupCard.addEventListener('click', () => {
@@ -92,8 +91,7 @@ formCard.addEventListener ('submit',
     closePopup(popupCard);
     cardNameInput.value = "";
     cardLinkInput.value = "";
-    popupCardSumbitButton.classList.add('popup__button_disabled')
-    popupCardSumbitButton.disabled = true;
+    validatorAddCard.disabledButton();
 }
 );
 
@@ -113,8 +111,8 @@ const closeByOverlayClick = () => {
 closeByOverlayClick()
 
 const enableValidation = () => {
-  popupEditEnableValidation.enableValidation();
-  popupCardEnableValidation.enableValidation();
+  validatorEditProfile.enableValidation();
+  validatorAddCard.enableValidation();
 }
 
 enableValidation(validationConfig)
