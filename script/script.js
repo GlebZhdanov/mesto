@@ -44,6 +44,7 @@ const validatorAddCard = new FormValidator(validationConfig, popupCardForm)
 
 openPopupButton.addEventListener('click', () => {
   openPopup(popupEdit)
+  validatorEditProfile.resetForm();
   popupItem.value = title.textContent;
   popupItemSubtitle.value = profileSubtitle.textContent;
 });
@@ -55,6 +56,7 @@ closePopupEdit.addEventListener('click', () => {
 openPopupCardButton.addEventListener('click', () => {
   openPopup(popupCard)
   validatorAddCard.disabledButton();
+  validatorAddCard.resetForm();
 });
 
 closePopupCard.addEventListener('click', () => {
