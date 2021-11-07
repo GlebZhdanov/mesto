@@ -1,4 +1,4 @@
-import { closePopup, openPopup, closeByEscape } from './utils.js';
+import { closePopup, openPopup, closeByEscape } from '../script/utils.js';
 
 const popupImage = document.querySelector('.popup_image-card');
 const popupImagePlace = popupImage.querySelector('.popup__place')

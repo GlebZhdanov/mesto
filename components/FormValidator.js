@@ -55,12 +55,19 @@ export class FormValidator {
     submitButton.disabled = true;
   }
 
+  activationButton() {
+    const submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
+      submitButton.classList.remove(this._config.inactiveButtonClass)
+      submitButton.disabled = false;
+  }
+
   enableValidation() {
     const forms = this._formElement;
     this._setEventListener(forms, this._config)
   }
 
   resetForm() {
+    const submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
     this._inputList.forEach(inputElement => {
       const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
       this._hideError(errorElement, inputElement)

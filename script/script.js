@@ -1,7 +1,7 @@
 import { initialCards } from './cards.js';
-import { Card } from './Card.js';
+import { Card } from '../components/Card.js';
 import { closePopup, openPopup, closeByEscape } from './utils.js';
-import { FormValidator } from './FormValidator.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 const title = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -45,6 +45,7 @@ const validatorAddCard = new FormValidator(validationConfig, popupCardForm)
 openPopupButton.addEventListener('click', () => {
   openPopup(popupEdit)
   validatorEditProfile.resetForm();
+  validatorEditProfile.activationButton();
   popupItem.value = title.textContent;
   popupItemSubtitle.value = profileSubtitle.textContent;
 });
