@@ -1,7 +1,8 @@
 import { initialCards } from './cards.js';
 import { Card } from '../components/Card.js';
-import { closePopup, openPopup, closeByEscape } from './utils.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { Popup } from '../components/Popup.js'
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const title = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -26,6 +27,9 @@ const formCard = popupCard.querySelector('.popup__form');
 const popupItem = document.querySelector('.popup__item_title_active');
 const popupItemSubtitle = document.querySelector('.popup__item_subtitle_active');
 
+const popupImagePlace = popupImage.querySelector('.popup__place')
+const popupImageOpen = popupImage.querySelector('.popup__image')
+
 const cardNameInput = popupCard.querySelector('.popup__item_title_card');
 const cardLinkInput = popupCard.querySelector('.popup__item_url_card');
 
@@ -39,34 +43,61 @@ const validationConfig = {
   inputErrorClass: 'popup__input_type_error',
 };
 
-const validatorEditProfile = new FormValidator(validationConfig, popupEditForm)
-const validatorAddCard = new FormValidator(validationConfig, popupCardForm)
+const popupOpen = new Popup(popupEdit);
+const popupOpenCard = new Popup(popupCard);
+const popupOpenImage = new PopupWithImage(popupImage)
+
+
+// cardImage.addEventListener('click', () => {
+//   popupOpenImage.open()
+// });
 
 openPopupButton.addEventListener('click', () => {
-  openPopup(popupEdit)
-  validatorEditProfile.resetForm();
-  validatorEditProfile.activationButton();
-  popupItem.value = title.textContent;
-  popupItemSubtitle.value = profileSubtitle.textContent;
-});
-
-closePopupEdit.addEventListener('click', () => {
-  closePopup(popupEdit)
+  popupOpen.open()
 });
 
 openPopupCardButton.addEventListener('click', () => {
-  openPopup(popupCard)
-  validatorAddCard.disabledButton();
-  validatorAddCard.resetForm();
+  popupOpenCard.open()
 });
 
-closePopupCard.addEventListener('click', () => {
-  closePopup(popupCard)
-});
+const popupClose = new Popup(popupEdit);
+const popupCloseCard = new Popup(popupCard);
 
-closePopupImage.addEventListener('click', () => {
-  closePopup(popupImage)
-});
+popupClose.setEventListeners(closePopupEdit);
+popupCloseCard.setEventListeners(closePopupCard);
+
+// cardImage.addEventListener('click', () => {
+//   openPopup(popupImage)
+//   popupImagePlace.textContent = cardTitle.textContent;
+//   popupImageOpen.src = cardImage.src;
+
+// });
+
+// _openImagePopup() {
+//   popupImagePlace.textContent = this._name;
+//   popupImageOpen.src = this._link;
+//   popupImageOpen.alt = this._name;
+//   // openPopup(popupImage);
+// }
+
+const validatorEditProfile = new FormValidator(validationConfig, popupEditForm);
+const validatorAddCard = new FormValidator(validationConfig, popupCardForm);
+
+// взять методы из кода попапа
+// openPopupButton.addEventListener('click', () => {
+//   openPopup(popupEdit)
+//   validatorEditProfile.resetForm();
+//   validatorEditProfile.activationButton();
+//   popupItem.value = title.textContent;
+//   popupItemSubtitle.value = profileSubtitle.textContent;
+// });
+
+// openPopupCardButton.addEventListener('click', () => {
+//   openPopup(popupCard)
+//   validatorAddCard.disabledButton();
+//   validatorAddCard.resetForm();
+// });
+
 
 const pasteCard = (data) => {
   listCard.prepend(data);
@@ -83,7 +114,7 @@ formEdit.addEventListener ('submit',
 
 const createCard = (data, cardSelector) => {
   const card = new Card(data, cardSelector).generateCard();
-  return card;
+  return card
 }
 
 formCard.addEventListener ('submit',
@@ -102,16 +133,6 @@ initialCards.forEach((data) => {
   const card = createCard(data, '.template-card');
   pasteCard(card);
 })
-
-const closeByOverlayClick = () => {
-  document.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(evt.target)
-  }
-  })
-}
-
-closeByOverlayClick()
 
 const enableValidation = () => {
   validatorEditProfile.enableValidation();

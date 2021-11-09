@@ -1,9 +1,3 @@
-import { closePopup, openPopup, closeByEscape } from '../script/utils.js';
-
-const popupImage = document.querySelector('.popup_image-card');
-const popupImagePlace = popupImage.querySelector('.popup__place')
-const popupImageOpen = popupImage.querySelector('.popup__image')
-
 export class Card {
   constructor(data, cardSelector){
     this._name = data.name;
@@ -29,7 +23,6 @@ export class Card {
     cardImage.src = this._link;
     cardImage.alt = this._name;
 
-
     this._setEventListeners();
 
     return this._element;
@@ -43,15 +36,15 @@ export class Card {
     this._element.querySelector('.elements__button-delete').addEventListener('click', (evt) => {evt.target.closest('.elements__group').remove()
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-    this._openImagePopup(this._name, this._link);
-    });
+    // this._element.querySelector('.elements__image').addEventListener('click', () => {
+    // this._openImagePopup(this._name, this._link);
+    // });
   }
 
-_openImagePopup() {
-  popupImagePlace.textContent = this._name;
-  popupImageOpen.src = this._link;
-  popupImageOpen.alt = this._name;
-  openPopup(popupImage);
-}
+//   _openImagePopup() {
+//     popupImagePlace.textContent = this._name;
+//     popupImageOpen.src = this._link;
+//     popupImageOpen.alt = this._name;
+//     // openPopup(popupImage);
+// }
 }
