@@ -43,10 +43,6 @@ export class FormValidator {
         this._toggleButtonState(submitButton, isFormValid, config);
       })
     })
-
-    this._formElement.addEventListener('submit',(evt) => {
-      evt.preventDefault();
-    })
   }
 
   disabledButton() {

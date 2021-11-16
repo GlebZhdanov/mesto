@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, cardSelector){
+  constructor( {data, handleCardClick}, cardSelector){
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -36,15 +37,8 @@ export class Card {
     this._element.querySelector('.elements__button-delete').addEventListener('click', (evt) => {evt.target.closest('.elements__group').remove()
     });
 
-    // this._element.querySelector('.elements__image').addEventListener('click', () => {
-    // this._openImagePopup(this._name, this._link);
-    // });
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
   }
-
-//   _openImagePopup() {
-//     popupImagePlace.textContent = this._name;
-//     popupImageOpen.src = this._link;
-//     popupImageOpen.alt = this._name;
-//     // openPopup(popupImage);
-// }
 }
