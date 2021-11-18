@@ -30,7 +30,7 @@
       <p class="footer__copyright">&copy;2021 Жданов Глеб</p>
     </footer>
     <div class="popup popup_edit-profile">
-      <form class="popup__form" name="form" novalidate>
+      <form class="popup__form  popup__form-profile" name="form" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
         <input
         id="title-card"
@@ -55,10 +55,11 @@
       </form>
     </div>
     <div class="popup popup_add-card">
-      <form class="popup__form" name="form" novalidate>
+      <form class="popup__form popup__form-card" name="form" novalidate>
         <h2 class="popup__title">Новое место</h2>
         <input
         id="name-card"
+        name="name"
         class="popup__item popup__item_title_card"
         type="text"
         placeholder="Название"
@@ -67,6 +68,7 @@
         required>
         <span id="name-card-error" class="popup__text-error"></span>
         <input
+        name="link"
         id="url-card"
         class="popup__item popup__item_url_card"
         type="url"
