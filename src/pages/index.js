@@ -27,6 +27,7 @@ const validatorEditProfile = new FormValidator(validationConfig, popupEditForm);
 const validatorAddCard = new FormValidator(validationConfig, popupCardForm);
 
 const popupOpenImage = new PopupWithImage(popupImage);
+popupOpenImage.setEventListeners()
 
 const editProfile = new PopupWithForm({
   popupSelector : popupEdit,
@@ -35,6 +36,8 @@ const editProfile = new PopupWithForm({
   editProfile.close()
   },
   })
+
+editProfile.setEventListeners()
 
 const dataProfil = new UserInfo({
   nameSelector: title,
@@ -48,7 +51,6 @@ openPopupButton.addEventListener('click', () => {
   popupItem.value = dataEditProfile.name
   popupItemSubtitle.value = dataEditProfile.info
   editProfile.open()
-  editProfile.setEventListeners()
 })
 
 const createCard = (item) => {
@@ -80,10 +82,11 @@ const cardItem = new PopupWithForm({
    },
 })
 
+cardItem.setEventListeners()
+
 openPopupCardButton.addEventListener('click', () => {
   cardItem.open();
   validatorAddCard.resetForm()
-  cardItem.setEventListeners()
   validatorAddCard.disableButton();
 })
 
