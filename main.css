@@ -86,6 +86,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/elements/__button-delete/elements__button-delete.css ***!
   \*****************************************************************************************************************************************************************************************/
 .elements__button-delete{background-color:transparent;background-image:url(a274c87c0f6b553b47ad.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;height:19.3px;position:absolute;right:15px;top:18px;width:18px}.elements__button-delete:hover{opacity:.6}
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/elements/__count-likes/elements__count-likes.css ***!
+  \*************************************************************************************************************************************************************************************/
+.elements__count-likes{color:#000;font-family:Inter;font-size:13px;font-style:normal;font-weight:400;letter-spacing:0;line-height:16px;text-align:center}
 /*!******************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/footer/footer.css ***!
   \******************************************************************************************************************************************************/
