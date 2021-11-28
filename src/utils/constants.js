@@ -8,7 +8,7 @@ export const popupEdit = '.popup_edit-profile';
 export const popupCard = '.popup_add-card';
 export const popupImage = '.popup_image-card';
 export const popupCardDelete = '.popup_delete-card';
-export const PopupAvatar = '.popup__avatar-profile';
+export const PopupAvatar = '.popup_avatar-profile';
 
 
 export const popupEditForm = document.querySelector('.popup__form-profile');
