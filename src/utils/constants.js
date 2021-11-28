@@ -5,15 +5,16 @@ const cardElement = cardTemplate.querySelector('.elements__group').cloneNode(tru
 export const cardDeleteButton = cardElement.querySelector('.elements__button-delete')
 
 export const popupEdit = '.popup_edit-profile';
+export const PopupAvatar = '.popup_avatar-profile';
 export const popupCard = '.popup_add-card';
 export const popupImage = '.popup_image-card';
 export const popupCardDelete = '.popup_delete-card';
-export const PopupAvatar = '.popup_avatar-profile';
+
 
 
 export const popupEditForm = document.querySelector('.popup__form-profile');
 export const popupCardForm = document.querySelector('.popup__form-card');
-export const popupAvatarForm = document.querySelector('.popup_form-avatar');
+export const popupAvatarForm = document.querySelector('.popup__form-avatar');
 export const avatarImage = '.profile__image';
 
 export const openPopupButton = document.querySelector('.profile__edit-button');
