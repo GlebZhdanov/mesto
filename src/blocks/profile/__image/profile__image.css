@@ -1,6 +1,14 @@
 .profile__image {
-  border-radius: 50%;
-  height: 120px;
   width: 120px;
+  height: 120px;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: -1;
 }
-
+.profile__image:hover {
+  background-image: url("../../../images/Vectorprofile.svg");
+  background-color: black;
+  opacity: 0.8;
+}

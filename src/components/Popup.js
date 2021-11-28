@@ -13,7 +13,6 @@ export class Popup {
   close() {
     document.removeEventListener('keydown', this._linkHandleEscClose)
     this._popup.classList.remove('popup_opened');
-
   }
 
   _handleEscClose(evt) {

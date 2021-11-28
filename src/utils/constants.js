@@ -1,21 +1,33 @@
 export const title = ('.profile__title');
 export const profileSubtitle = ('.profile__subtitle');
+const cardTemplate = document.querySelector('.template-card').content;
+const cardElement = cardTemplate.querySelector('.elements__group').cloneNode(true);
+export const cardDeleteButton = cardElement.querySelector('.elements__button-delete')
 
 export const popupEdit = '.popup_edit-profile';
 export const popupCard = '.popup_add-card';
 export const popupImage = '.popup_image-card';
+export const popupCardDelete = '.popup_delete-card';
+export const PopupAvatar = '.popup_avatar-profile';
+
 
 export const popupEditForm = document.querySelector('.popup__form-profile');
 export const popupCardForm = document.querySelector('.popup__form-card');
+export const popupAvatarForm = document.querySelector('.popup_form-avatar');
+export const avatarImage = '.profile__image';
 
 export const openPopupButton = document.querySelector('.profile__edit-button');
 export const openPopupCardButton = document.querySelector('.profile__button');
+export const openPopupAvatar = document.querySelector('.profile__edit-avatar');
+
 
 export const popupItem = document.querySelector('.popup__item_title_active');
 export const popupItemSubtitle = document.querySelector('.popup__item_subtitle_active');
 
 export const cardNameInput = document.querySelector('.popup__item_title_card');
 export const cardLinkInput = document.querySelector('.popup__item_url_card');
+
+export const cardAvatarInput = document.querySelector('.popup__item_url_avatar');
 
 export const listCard = ('.elements');
 
