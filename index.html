@@ -50,7 +50,22 @@
         maxlength="200"
         required >
         <span id="about-error" class="popup__text-error"></span>
-        <button type="submit" class="popup__buttom" >Cохранить</button>
+        <button type="submit" class="popup__buttom popup__buttom_card popup__submit">Сохранить</button>
+        <button type="button" class="popup__buttom-close"></button>
+      </form>
+    </div>
+    <div class="popup popup_avatar-profile">
+      <form class="popup__form popup_form-avatar" name="form" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <input
+        name="avatar"
+        id="url-card"
+        class="popup__item popup__item_url_avatar"
+        type="url"
+        placeholder="Ссылка на аватар"
+        required>
+        <span id="url-card-error" class="popup__text-error"></span>
+        <button type="submit" class="popup__buttom popup__buttom_card popup__submit">Сохранить</button>
         <button type="button" class="popup__buttom-close"></button>
       </form>
     </div>
@@ -79,21 +94,6 @@
         <button type="button" class="popup__buttom-close"></button>
       </form>
     </div>
-    <div class="popup popup_avatar-profile">
-      <form class="popup__form popup_form-avatar" name="form" novalidate>
-        <h2 class="popup__title">Обновить аватар</h2>
-        <input
-        name="avatar"
-        id="url-card"
-        class="popup__item popup__item_url_avatar"
-        type="url"
-        placeholder="Ссылка на аватар"
-        required>
-        <span id="url-card-error" class="popup__text-error"></span>
-        <button type="submit" class="popup__buttom popup__buttom_card">Сохранить</button>
-        <button type="button" class="popup__buttom-close"></button>
-      </form>
-    </div>
     <div class="popup popup_image-profile">
       <form class="popup__form popup_form-card" name="form">
         <h2 class="popup__title">Вы уверены?</h2>
@@ -107,6 +107,13 @@
         <h3 class="popup__place"></h3>
         <button type="button" class="popup__buttom-close"></button>
       </div>
+    </div>
+    <div class="popup popup_delete-card">
+      <form class="popup__form popup_form-card" name="form">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="button" class="popup__buttom-close"></button>
+        <button type="submit" class="popup__buttom">Да</button>
+      </form>
     </div>
   </div>
   <template class="template-card">
