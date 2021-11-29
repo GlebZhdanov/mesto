@@ -12,12 +12,10 @@ export class UserInfo {
     }
   }
 
-  setUserInfo(data) {
-    this._userName.textContent = data.name
-    this._userInfo.textContent = data.about
+setUserInfo({ name, about, avatar}) {
+    this._userName.textContent = name
+    this._userInfo.textContent = about
+    this._userAvatar.src = avatar
   }
 
-  setUserAvatar(data) {
-    this._userAvatar.src = data.avatar
-  }
 }

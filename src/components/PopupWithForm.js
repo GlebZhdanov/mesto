@@ -28,7 +28,7 @@ export class PopupWithForm extends Popup{
     this._form.addEventListener('submit', this._clickFormSubmit)
 }
 
-  isLoading(boolean) {
+  renderLoading(boolean) {
     if (boolean === true) {
       this._sumbitButton.textContent = 'Сохранение...'
     } else {

@@ -1,5 +1,4 @@
 import { data } from "browserslist";
-import { Popup } from "./Popup";
 
 export class Card {
   constructor( {data, handleCardClick, handleDeleteCard, handleLikeClick}, cardSelector){
@@ -34,7 +33,7 @@ export class Card {
     cardImage.alt = this._name;
     this._deleteButtomCard()
     this._setEventListeners();
-    this._updateLikes()
+    this._switchLikes()
     return this._element;
 }
 
@@ -50,21 +49,18 @@ export class Card {
    return this._likes.some(user => user._id === this._userIdCurrent)
   }
 
-  setLikes(dataLikes) {
+  updateLikes(dataLikes) {
     this._likes = dataLikes;
-    this._updateLikes()
+    this._likeCounter.textContent = dataLikes.length;
+    this._switchLikes();
   }
 
-  _updateLikes() {
+  _switchLikes() {
     if(this.isLiked()){
       this._element.querySelector('.elements__vector').classList.add('elements__vector-active');
     } else {
       this._element.querySelector('.elements__vector').classList.remove('elements__vector-active');
     }
-  }
-
-  getLikes(data) {
-    this._likeCounter.textContent = data.length
   }
 
   _deleteButtomCard() {

@@ -7,24 +7,25 @@ import { PopupWithSubmit } from '../components/PopupWithSubmit.js'
 import { UserInfo} from '../components/UserInfo.js'
 import { Section } from '../components/Section.js';
 import '../pages/index.css';
-import { title,
+import {
+  title,
   profileSubtitle,
-   popupEdit,
-   popupCard,
-   popupImage,
-   PopupAvatar,
-   openPopupAvatar,
-   popupEditForm,
-   popupCardForm,
-   popupAvatarForm,
-   avatarImage,
-   popupCardDelete,
-   openPopupButton,
-   openPopupCardButton,
-   popupItem,
-   popupItemSubtitle,
-   listCard,
-   validationConfig
+  popupEdit,
+  popupCard,
+  popupImage,
+  PopupAvatar,
+  openPopupAvatar,
+  popupEditForm,
+  popupCardForm,
+  popupAvatarForm,
+  avatarImage,
+  popupCardDelete,
+  openPopupButton,
+  openPopupCardButton,
+  popupItem,
+  popupItemSubtitle,
+  listCard,
+  validationConfig
   } from '../utils/constants.js';
 
 const validatorEditProfile = new FormValidator(validationConfig, popupEditForm);
@@ -42,13 +43,15 @@ const api = new Api({
 
 let userId
 
-api.getUserInfo()
-.then(data => {
+Promise.all([api.getUserInfo(), api.getAllCards()])
+  .then(([data, dataCards]) => {
   dataProfil.setUserInfo(data);
-  dataProfil.setUserAvatar(data);
   userId = data._id;
-})
-.catch(err => console.log(`Ошибка получения данных: ${err}`))
+  list.renderItems(dataCards)
+  })
+  .catch(err => {
+    console.log(`Ошибка получения данных: ${err}`)
+  });
 
 const popupOpenImage = new PopupWithImage(popupImage);
 popupOpenImage.setEventListeners()
@@ -61,7 +64,7 @@ const dataProfil = new UserInfo({
 const editProfile = new PopupWithForm({
   popupSelector : popupEdit,
   formSubmit : (data) => {
-    editProfile.isLoading(true)
+    editProfile.renderLoading(true)
     api.patchUserInfo(data)
     .then((data) => {
       dataProfil.setUserInfo(data)
@@ -69,7 +72,7 @@ const editProfile = new PopupWithForm({
     })
     .catch(err => console.log(`Ошибка обновления данных: ${err}`))
     .finally(() => {
-      editProfile.isLoading(false)
+      editProfile.renderLoading(false)
     })
   },
   })
@@ -78,15 +81,15 @@ editProfile.setEventListeners()
 const editAvatar = new PopupWithForm({
   popupSelector : PopupAvatar,
   formSubmit : (data) => {
-    editAvatar.isLoading(true)
+    editAvatar.renderLoading(true)
     api.uploadAvatar(data)
       .then((data) => {
-        dataProfil.setUserAvatar(data);
+        dataProfil.setUserInfo(data);
         editAvatar.close();
       })
     .catch(err => console.log(`Ошибка аватара: ${err}`))
     .finally(() => {
-      editAvatar.isLoading(false)
+      editAvatar.renderLoading(false)
     })
   },
 })
@@ -113,17 +116,11 @@ openPopupButton.addEventListener('click', openPopupEdit)
 
 // Код для карточек
 const list = new Section({
-  renderer: (item) => {
-  const element = createCard(item)
+  renderer: (dataCards) => {
+  const element = createCard(dataCards)
   list.addItem(element)
   }
 }, listCard)
-
-api.getAllCards()
-.then(item => {
-  list.renderItems(item)
-})
-
 
 const createCard = (data) => {
   const card = new Card({
@@ -146,15 +143,15 @@ const createCard = (data) => {
       if(card.isLiked()){
         api.deleteCardLike(data.id)
         .then(dataLikes => {
-          card.setLikes(dataLikes.likes);
-          card.getLikes(dataLikes.likes)
+          card.updateLikes(dataLikes.likes)
         })
+        .catch(err => console.log(`Ошибка удаления лайка: ${err}`))
       } else {
         api.putCardLike(data.id)
         .then(dataLikes => {
-          card.setLikes(dataLikes.likes);
-          card.getLikes(dataLikes.likes)
+          card.updateLikes(dataLikes.likes)
         })
+        .catch(err => console.log(`Ошибка установки лайка: ${err}`))
       }
     }
   }, '.template-card');
@@ -166,7 +163,7 @@ cardDelete.setEventListeners()
 const cardItem = new PopupWithForm({
   popupSelector : popupCard,
     formSubmit: (item) => {
-      cardItem.isLoading(true)
+      cardItem.renderLoading(true)
       api.postNewCard(item)
       .then((res => {
         const addCard = createCard(res);
@@ -174,7 +171,7 @@ const cardItem = new PopupWithForm({
         cardItem.close()}))
         .catch(err => console.log(`Ошибка создания карточки: ${err}`))
         .finally(() => {
-          cardItem.isLoading(false)
+          cardItem.renderLoading(false)
         })
    },
 })
